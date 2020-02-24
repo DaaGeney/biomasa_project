@@ -59,7 +59,7 @@
     </v-app-bar>
     <v-content>
       <v-container>
-        <nuxt />
+         <nuxt />
       </v-container>
     </v-content>
     <v-navigation-drawer

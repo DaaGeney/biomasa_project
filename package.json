@@ -5,18 +5,21 @@
   "author": "Diego Assia",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nodemon --watch api --exec \"nuxt\"",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "material-design-icons-iconfont": "^5.0.1",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
+    "@mdi/font": "^4.9.95",
     "@nuxtjs/vuetify": "^1.0.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
     "prettier": "^1.19.1"
   }
 }
