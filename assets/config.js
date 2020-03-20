@@ -75,7 +75,7 @@ let config = {
     },
     new3:{
       id: 3,
-      tittle: 'Noticia 02',
+      tittle: 'Noticia 03',
       description: 'kjasfjkahsf kasjfhkjasfh askjfhkjsa fkas fjask fkajs fkasj fjka fkac ansc mnec enmw cmsa cn en cas cnmre wshc whe cjweh camns cew camns cwhej cwnec rgehebhdc heb chbr bc c',
       autor: 'MArcos Antonio',
       date: '2019-01-12',
