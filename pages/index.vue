@@ -1,93 +1,186 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
+  <v-layout column justify-center align-center>
+    <v-parallax id="parallax-hero" :src="images.background">
+      <v-row no-gutters align="center" justify="center">
+        <v-col class="text-center" cols="2" align-self="start"></v-col>
+        <v-col class="text-center" cols="8" align-self="center">
+          <v-sheet elevation="12" class="pa-2">
+            <br />
+            <v-img
+              :src="images.logo"
+              aspect-ratio="631.277"
+              min-height="30vh"
+              contain
+            ></v-img>
+            <h4 class="light--text font-weight-light text-center py-1">
+              Portal para la sistematización de datos <br />
+              sobre el potencial energético de la biomasa residual y <br />
+              sus tecnologías de aprovechamiento.
+            </h4>
+            <div class="container">
+              <div
+                class="arrow"
+                @click="$vuetify.goTo(selector[0], options)"
+              ></div>
+            </div>
+            <br />
+          </v-sheet>
+        </v-col>
+        <v-col class="text-center" cols="2" align-self="start"></v-col>
+        <v-spacer></v-spacer>
+      </v-row>
+    </v-parallax>
+    <div style="width:135%" id="first">
+      <v-carousel
+        style="margin-top: 15vh; padding-right: 10%; padding-left: 10%;"
+        cycle
+        height="530"
+        hide-delimiter-background
+        hide-delimiters
+      >
+        <v-carousel-item v-for="slide in slides" :key="slide.id">
+          <v-sheet :color="slide.color" height="100%" class="pa-10">
+            <v-row class="fill-height" align="center" justify="center">
+              <div
+                class="font-weight-bold pa-2"
+                :class="{
+                  'display-1': $vuetify.breakpoint.smAndDown,
+                  'display-4': $vuetify.breakpoint.mdAndUp
+                }"
+              >
+                {{ slide.tittle }}
+              </div>
+              <div
+                class="light--text headline font-weight-light text-center mx-12"
+              >
+                {{ slide.description }}
+              </div>
+              <v-spacer></v-spacer>
+              <v-spacer></v-spacer>
+            </v-row>
+          </v-sheet>
+        </v-carousel-item>
+      </v-carousel>
+      <div class="container">
+        <div
+          class="arrow"
+          @click="$vuetify.goTo(selector[1], options)"
+          style="margin-bottom: 8vh;"
+        ></div>
       </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
+    </div>
+    <div style="width:135%" id="seccond">
+      <v-col>
+        <v-row style="margin-top: 15vh; padding-right: 10%; padding-left: 10%;">
+          <v-col
+            v-for="n in news"
+            :key="n.id"
+            class="text-center pa-12"
+            cols="4"
           >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
-          >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
+            <v-card
+              raised
+              align="justify"
+              justify="justify"
+            >
+              <v-card-title>{{ n.tittle }}</v-card-title>
+              <v-card-subtitle>{{ n.autor }}</v-card-subtitle>
+              <v-card-text>{{ n.description }}</v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" justify="center" align-self="center">
+            <div class="container">
+              <div
+                class="arrow"
+                @click="$vuetify.goTo(selector[0], options)"
+              ></div>
+            </div>
+          </v-col>
+        </v-row>
+      </v-col>
+    </div>
   </v-layout>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import * as easings from 'vuetify/es5/services/goto/easing-patterns'
+import config from '../assets/config.js'
+let background_plant = config.routes.background_plant
+let background_news = config.routes.background_wood
 
 export default {
-   layout: 'white',
-  components: {
-    Logo,
-    VuetifyLogo
+  data() {
+    return {
+      images: {
+        logo: config.routes.logo,
+        background: config.routes.background_main
+      },
+      news: config.news,
+      slides: config.atributes,
+      //Button Programatic Scroll
+      type: 'selector',
+      selector: ['#first', '#seccond'],
+      selections: ['#first', '#second', '#third'],
+      duration: 2000,
+      offset: 0,
+      easing: 'easeInOutCubic',
+      easings: Object.keys(easings)
+    }
+  },
+  mounted() {
+    ;(document.getElementById('parallax-hero').style.width = '135%'),
+      (document.getElementById('parallax-hero').style.height = '100vh'),
+      (document.getElementById('first').style.backgroundImage =
+        'url(' + background_plant + ')'),
+      (document.getElementById('seccond').style.backgroundImage =
+        'url(' + background_news + ')')
+  },
+  computed: {
+    target() {
+      const value = this[this.type]
+      if (!isNaN(value)) return Number(value)
+      else return value
+    },
+    options() {
+      return {
+        duration: this.duration,
+        offset: this.offset,
+        easing: this.easing
+      }
+    }
   }
 }
 </script>
+
+<style scoped>
+#first, #seccond {
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.arrow {
+  box-sizing: border-box;
+  height: 5vw;
+  width: 5vw;
+  border-style: solid;
+  border-color: black;
+  border-width: 0px 1px 1px 0px;
+  transform: rotate(45deg);
+  transition: border-width 150ms ease-in-out;
+}
+
+.arrow:hover {
+  border-bottom-width: 4px;
+  border-right-width: 4px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

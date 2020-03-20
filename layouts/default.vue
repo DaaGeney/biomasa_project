@@ -1,116 +1,87 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
+    <v-app-bar inverted-scroll fixed app>
+      <v-app-bar-nav-icon @click="drawer = true" class="hidden-sm-and-up"></v-app-bar-nav-icon>
+      <v-spacer></v-spacer>
+      <v-spacer class="hidden-sm-and-up"></v-spacer>
+      <v-img :src="images.logo" aspect-ratio="631.277" min-height="100%" contain></v-img>
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn v-for="item in menu" :key="item.id" :to="item.link" text>{{ item.title }}</v-btn>
+      </v-toolbar-items>
+    </v-app-bar>
+
+    <v-navigation-drawer v-model="drawer" absolute temporary width="300" style="position:fixed; top:0; left:0; overflow-y:scroll;">
       <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
+        <v-list-item v-for="item in menu" :key="item.id" :to="item.link">
+          <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
+          </v-list-item-icon>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
+
     <v-content>
       <v-container>
-         <nuxt />
+        <nuxt />
       </v-container>
     </v-content>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+
+    <v-footer dark padless>
+      <v-card class="flex" flat tile>
+        <v-card-title class="green">
+          <strong class="subheading">Conéctate con nuestras redes sociales HOY!</strong>
+
+          <v-spacer></v-spacer>
+
+          <v-btn v-for="icon in icons" :key="icon.tittle" class="mx-4" dark icon>
+            <v-icon size="24px">{{ icon.tittle }}</v-icon>
+          </v-btn>
+        </v-card-title>
+
+        <v-card-text class="py-2 white--text text-center">
+          {{ new Date().getFullYear() }} —
+          <strong>UdeM</strong>
+        </v-card-text>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      clipped: false,
+      fixed: true,
       drawer: false,
-      fixed: false,
-      items: [
+      menu: [
+        { id: 1, icon: 'mdi-home', title: 'INICIO', link: '/' },
+        { id: 2, icon: 'mdi-tools', title: 'APLICACIONES', link: '/admin' },
+        { id: 3, icon: 'mdi-phone', title: 'CONTACTO', link: '/about' },
+        { id: 4, icon: 'mdi-face', title: 'INICIAR SESION', link: '/login' },
+      ],
+      images: {
+        logo: require('../assets/img/logo.png')
+      },
+      icons: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          tittle: 'mdi-facebook',
+          target: 'https://www.facebook.com/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          tittle: 'mdi-instagram',
+          target: 'https://www.instagram.com/'
         }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      ]
+    }
+  },
+
+  methods: {
+    menuItems() {
+      return this.menu
     }
   }
 }
