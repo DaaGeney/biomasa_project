@@ -2,6 +2,7 @@
   <v-layout column justify-center align-center>
     <v-parallax id="parallax-hero" :src="images.background">
       <v-row no-gutters align="center" justify="center">
+        <!--Esto es un comentario-->
         <v-col class="text-center" cols="2" align-self="start"></v-col>
         <v-col class="text-center" cols="8" align-self="center">
           <v-sheet elevation="12" class="pa-2">
@@ -51,7 +52,7 @@
                 {{ slide.tittle }}
               </div>
               <div
-                class="light--text headline font-weight-light text-center mx-12"
+                class="light--text display-4 headline font-weight-light text-center mx-12"
               >
                 {{ slide.description }}
               </div>
@@ -97,6 +98,30 @@
                 @click="$vuetify.goTo(selector[0], options)"
               ></div>
             </div>
+          </v-col>
+        </v-row>
+      </v-col>
+    </div>
+    <div style="width:135%;" id="third">
+      <v-col class="text-center" align-self="center">
+        <v-row style="margin-top: 15vh;">
+          <v-col cols="12" justify="center" align-self="center">
+            <div
+                class="font-weight-bold pa-2 pb-6"
+                style="color:white"
+                :class="{
+                  'display-2': $vuetify.breakpoint.smAndDown,
+                  'display-3': $vuetify.breakpoint.mdAndUp
+                }"
+              >
+                Participa en la construcción del <br>futuro de las bioenergías en Colombia.
+              </div>
+            <h2 class="light--text font-weight-light text-center py-1 mb-10" style="color:white">
+              Estamos invitando a la comunidad científica, académica y empresarial <br>
+              a que se unan a esta iniciativa para consolidar redes de trabajo <br>
+              alrededor del sector de las bioenergías.
+            </h2>
+            <div class="button_cont" align="center" style="font-size:30px; margin-bottom: 15vh;"><a class="example_d">¡Únete ahora!</a></div>
           </v-col>
         </v-row>
       </v-col>
@@ -157,10 +182,16 @@ export default {
 <style scoped>
 #first, #seccond {
   height: 100%;
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+#third{
+  background: #258cc8;
+/* fallback for old browsers */
+background: -webkit-linear-gradient(222deg, rgb(37, 140, 200) 9%, rgb(223, 35, 252) 99%);
+/* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(222deg, rgb(37, 140, 200) 9%, rgb(223, 35, 252) 99%);
 }
 .arrow {
   box-sizing: border-box;
@@ -182,5 +213,17 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: -12px;
+}
+
+.example_d {
+color: #0e0a4e !important;
+text-transform: uppercase;
+background: #ffffff;
+padding: 30px;
+border: 4px solid #1b0fc8 !important;
+border-radius: 12px;
+display: inline-block;
+transition: all 0.3s ease 0s;
 }
 </style>

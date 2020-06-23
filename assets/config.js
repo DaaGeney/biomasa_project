@@ -12,7 +12,7 @@ let config = {
       tittle: 'Organizado',
       color: 'rgba(81, 4, 97, 0.7)',
       description:
-        'Clasificación del potencial energético de la biomasa residual de acuerdo a las tecnologías de conversión (digestión anaerobia, fermentación alcohólica, transesterificación, gasificación, pirolisis, combustión, entre otras)'
+        'Clasificación del potencial energético de la biomasa residual de acuerdo a las tecnologías de conversión (digestión anaerobia, fermentación alcohólica y transesterificación)'
     },
     atr3: {
       id: 'third',
@@ -33,25 +33,32 @@ let config = {
       tittle: 'Unificado',
       color: 'rgba(4, 94, 84, 0.7)',
       description:
-        'Conformación de una red de trabajo por unidades académicas y empresas para el desarrollo de investigaciones y proyectos orientados al desarrollo y apropiación de las bioenergías en Colombia'
+        'Conformación de una red de trabajo por unidades académicas y empresas para el desarrollo de investigaciones y proyectos orientados a la investigación y apropiación de las bioenergías en Colombia'
     },
     atr6: {
       id: 'sixth',
       tittle: 'Confiable',
       color: 'rgba(94, 60, 4, 0.7)',
       description:
-        'Referenciación asertiva de datos obtenidos de fuentes bibliográficas y visibilización de los resultados compartidos de centros de investigación que realizan ensayos sobre el potencial energético'
+        'Referenciación asertiva de datos obtenidos de fuentes bibliográficas y visibilización de los resultados compartidos de centros de investigación que realizan ensayos sobre el potencial energético de la biomasa'
     },
     atr7: {
       id: 'seventh',
       tittle: 'Base de datos',
       color: 'rgba(25, 4, 94, 0.7)',
       description:
-        'Banco de documentos tales como protocolos, normas técnicas, regulaciones, y noticias relacionadas con el área de investigación y desarrollo de las bioenergías Herramientas virtuales para la estimación del potencial de la biomasa residual y su equivalencia energética'
+        'Banco de documentos tales como protocolos, normas técnicas, regulaciones, y noticias relacionadas con el área de investigación y desarrollo de las bioenergías'
+    },
+    atr8: {
+      id: 'eight',
+      tittle: 'A un solo click',
+      color: 'rgba(5, 40, 50, 0.7)',
+      description:
+        'Herramientas virtuales para la estimación del potencial de la biomasa residual y su equivalencia energética para diferentes tipos de tecnologías'
     }
   },
   routes: {
-    logo: require('../assets/img/comercial_name_bio.png'),
+    logo: require('../assets/img/comercial_name.png'),
     background_main: require('../assets/img/background.jpg'),
     background_plant: require('../assets/img/background_biomass_plant.jpg'),
     background_wood: require('../assets/img/background_wood.jpg')

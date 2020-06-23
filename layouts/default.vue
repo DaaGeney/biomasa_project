@@ -25,7 +25,7 @@
     </v-navigation-drawer>
 
     <v-content>
-      <v-container>
+      <v-container style="padding:0px;">
         <nuxt />
       </v-container>
     </v-content>
@@ -43,8 +43,9 @@
         </v-card-title>
 
         <v-card-text class="py-2 white--text text-center">
-          {{ new Date().getFullYear() }} —
-          <strong>UdeM</strong>
+          <strong>Todos los derechos protegidos</strong>
+          — {{ new Date().getFullYear() }} —
+          <strong>Universidad de Medellín</strong>
         </v-card-text>
       </v-card>
     </v-footer>
@@ -64,7 +65,7 @@ export default {
         { id: 4, icon: 'mdi-face', title: 'INICIAR SESION', link: '/login' },
       ],
       images: {
-        logo: require('../assets/img/logo.png')
+        logo: require('../assets/img/comercial_name.png')
       },
       icons: [
         {
